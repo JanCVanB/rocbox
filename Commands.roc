@@ -22,3 +22,17 @@ echo = {
     # -e      Interpret backslash-escaped characters (i.e., \t=tab)
     # -E      Disable interpretation of backslash-escaped characters
 }
+
+false = {
+    name: "false",
+    mapper: False,
+    runner: { stdout: "", exitCode: 1 },
+    arg: ArgNone,
+}
+
+true = {
+    name: "true",
+    mapper: True,
+    runner: { stdout: "", exitCode: 0 },
+    arg: ArgNone,
+}
