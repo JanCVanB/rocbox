@@ -2,6 +2,12 @@ interface Commands
     exposes [echo, run]
     imports []
 
+run = \command ->
+    when command is
+        Echo text -> echo.runner text
+        False -> false.runner
+        True -> true.runner
+
 echo = {
     name: "echo",
     mapper: \text -> Echo text,
@@ -12,7 +18,3 @@ echo = {
         help: "the text to echo",
     },
 }
-
-run = \command ->
-    when command is
-        Echo text -> echo.runner text
