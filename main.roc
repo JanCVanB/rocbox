@@ -7,6 +7,7 @@ main : Program
 main = Program.withArgs \args ->
     when Arg.parseFormatted parser args is
         Ok command ->
+            # TODO: Support stdin
             Commands.run command
             |> \{ stdout, exitCode } ->
                 stdout
@@ -21,7 +22,10 @@ main = Program.withArgs \args ->
 parser =
     Arg.choice
         [
+            # TODO: Add cat, cp, mv, rm, split, tee, etc.
             subcommand Commands.echo,
+            subcommand Commands.false,
+            subcommand Commands.true,
         ]
     |> Arg.program
         {
@@ -34,6 +38,6 @@ subcommand = \command ->
     |> \subparser ->
         # TODO: Support multiple arguments
         when command.arg is
+            ArgNone -> subparser
             ArgStr config -> Arg.withParser subparser (Arg.str config)
     |> Arg.subCommand command.name
-
