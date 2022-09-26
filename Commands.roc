@@ -2,6 +2,12 @@ interface Commands
     exposes [echo, run]
     imports []
 
+run = \command ->
+    when command is
+        Echo text -> echo.runner text
+        False -> false.runner
+        True -> true.runner
+
 echo = {
     name: "echo",
     mapper: \text -> Echo text,
@@ -16,7 +22,3 @@ echo = {
     # -e      Interpret backslash-escaped characters (i.e., \t=tab)
     # -E      Disable interpretation of backslash-escaped characters
 }
-
-run = \command ->
-    when command is
-        Echo text -> echo.runner text
