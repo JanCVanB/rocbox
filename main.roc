@@ -1,4 +1,4 @@
-app "cu"
+app "rocbox"
     packages { pf: "roc/examples/interactive/cli-platform/main.roc" }
     imports [Commands, pf.Arg, pf.Program.{ Program }, pf.Stdout]
     provides [main] to pf
@@ -25,8 +25,8 @@ parser =
         ]
     |> Arg.program
         {
-            name: "cu",
-            help: "A Roc-based implementation of the GNU Core Utilities",
+            name: "RocBox",
+            help: "A Roc-based implementation of a subset of BusyBox",
         }
 
 subcommand = \command ->
