@@ -32,8 +32,8 @@ parser =
 subcommand = \command ->
     Arg.succeed command.mapper
     |> \subparser ->
-        # TODO: Support multiple arguments
-        when command.arg is
-            ArgStr config -> Arg.withParser subparser (Arg.str config)
+        List.walk command.args subparser \s, arg ->
+            when arg is
+                ArgStr config -> Arg.withParser s (Arg.str config)
     |> Arg.subCommand command.name
 
